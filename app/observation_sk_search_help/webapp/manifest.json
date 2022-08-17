@@ -15,6 +15,18 @@
             "version": "1.7.0",
             "toolsId": "18d3e542-cfa7-4cc9-a5f9-528ffe5e0dbc"
         },
+        "crossNavigation": {
+            "inbounds": {
+                "observation_sk-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "observation_sk",
+                    "action": "display"
+                }
+            }
+        },
         "dataSources": {
             "mainService": {
                 "uri": "/catalog/",
@@ -141,5 +153,9 @@
     "sap.fiori": {
         "registrationIds": [],
         "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "bigbagstock"
     }
 }
