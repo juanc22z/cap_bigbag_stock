@@ -3,108 +3,108 @@ ID: capbigbagstock
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: capbigbagstock-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: capbigbagstock-db
-  - name: capbigbagstock-auth
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-  build-parameters:
-    builder: npm-ci
-- name: capbigbagstock-db-deployer
-  type: hdb
-  path: db
-  requires:
-  - name: capbigbagstock-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: capbigbagstock-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: capbigbagstock-destination-service
+  - name: capbigbagstock-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: capbigbagstock-db
+      - name: capbigbagstock-auth
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
     parameters:
-      content-target: true
-  - name: capbigbagstock_html_repo_host
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+  - name: capbigbagstock-db-deployer
+    type: hdb
+    path: db
+    requires:
+      - name: capbigbagstock-db
     parameters:
-      service-key:
-        name: capbigbagstock_html_repo_host-key
-  - name: capbigbagstock-auth
+      buildpack: nodejs_buildpack
+  - name: capbigbagstock-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: capbigbagstock-destination-service
+        parameters:
+          content-target: true
+      - name: capbigbagstock_html_repo_host
+        parameters:
+          service-key:
+            name: capbigbagstock_html_repo_host-key
+      - name: capbigbagstock-auth
+        parameters:
+          service-key:
+            name: capbigbagstock-auth-key
     parameters:
-      service-key:
-        name: capbigbagstock-auth-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: bigbagstock_capbigbagstock_html_repo_host
-          ServiceInstanceName: capbigbagstock-html5-app-host-service
-          ServiceKeyName: capbigbagstock_html_repo_host-key
-          sap.cloud.service: bigbagstock
-        - Authentication: OAuth2UserTokenExchange
-          Name: bigbagstock_capbigbagstock_auth
-          ServiceKeyName: capbigbagstock-auth-key
-          sap.cloud.service: bigbagstock
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
+      content:
+        instance:
+          destinations:
+            - Name: bigbagstock_capbigbagstock_html_repo_host
+              ServiceInstanceName: capbigbagstock-html5-app-host-service
+              ServiceKeyName: capbigbagstock_html_repo_host-key
+              sap.cloud.service: bigbagstock
+            - Authentication: OAuth2UserTokenExchange
+              Name: bigbagstock_capbigbagstock_auth
+              ServiceKeyName: capbigbagstock-auth-key
+              sap.cloud.service: bigbagstock
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
 resources:
-- name: capbigbagstock-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-    services: hana
-  properties:
-    hdi-service-name: ${service-name}
-- name: capbigbagstock-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      tenant-mode: dedicated
-      xsappname: capbigbagstock-${space}
-      role-collections:
-        - description: Manager Bigbag Stock
-          name: BigbagStockManager-${space}
-          role-template-references:
-          - $XSAPPNAME.BigbagStockManager
-        - description: Operator Bigbag Stock
-          name: BigbagStockOperator-${space}
-          role-template-references:
-          - $XSAPPNAME.BigbagStockOperator
-        - description: View Bigbag Stock
-          name: BigbagStockViewer-${space}
-          role-template-references:
-          - $XSAPPNAME.BigbagStockViewer
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-- name: capbigbagstock-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      version: 1.0.0
-    service: destination
-    service-name: capbigbagstock-destination-service
-    service-plan: lite
-- name: capbigbagstock_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: capbigbagstock-html5-app-host-service
-    service-plan: app-host
+  - name: capbigbagstock-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      services: hana
+    properties:
+      hdi-service-name: ${service-name}
+  - name: capbigbagstock-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: capbigbagstock-${space}
+        role-collections:
+          - description: Manager Bigbag Stock
+            name: BigbagStockManager-${space}
+            role-template-references:
+              - $XSAPPNAME.BigbagStockManager
+          - description: Operator Bigbag Stock
+            name: BigbagStockOperator-${space}
+            role-template-references:
+              - $XSAPPNAME.BigbagStockOperator
+          - description: View Bigbag Stock
+            name: BigbagStockViewer-${space}
+            role-template-references:
+              - $XSAPPNAME.BigbagStockViewer
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+  - name: capbigbagstock-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+      service: destination
+      service-name: capbigbagstock-destination-service
+      service-plan: lite
+  - name: capbigbagstock_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: capbigbagstock-html5-app-host-service
+      service-plan: app-host
 parameters:
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm install --production
-    - npx -p @sap/cds-dk cds build --production
-    - npx rimraf gen/db/src/gen/data
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+        - npx rimraf gen/db/src/gen/data
