@@ -68,6 +68,19 @@ resources:
     config:
       tenant-mode: dedicated
       xsappname: capbigbagstock-${space}
+      role-collections:
+        - description: Manager Bigbag Stock
+          name: BigbagStockManager-${space}
+          role-template-references:
+          - $XSAPPNAME.BigbagStockManager
+        - description: Operator Bigbag Stock
+          name: BigbagStockOperator-${space}
+          role-template-references:
+          - $XSAPPNAME.BigbagStockOperator
+        - description: View Bigbag Stock
+          name: BigbagStockViewer-${space}
+          role-template-references:
+          - $XSAPPNAME.BigbagStockViewer
     path: ./xs-security.json
     service: xsuaa
     service-plan: application
