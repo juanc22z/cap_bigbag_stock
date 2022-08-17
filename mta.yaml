@@ -8,7 +8,7 @@ modules:
   path: gen/srv
   requires:
   - name: capbigbagstock-db
-  - name: capbigbagstock-auth
+  - name: uaa_capbigbagstock
   provides:
   - name: srv-api
     properties:
@@ -23,6 +23,10 @@ modules:
   requires:
   - name: capbigbagstock-db
   parameters:
+    build-parameters:
+      ignore:
+      - default-env.json
+      - .env
     buildpack: nodejs_buildpack
 - name: capbigbagstock-destination-content
   type: com.sap.application.content
@@ -34,10 +38,10 @@ modules:
     parameters:
       service-key:
         name: capbigbagstock_html_repo_host-key
-  - name: capbigbagstock-auth
+  - name: uaa_capbigbagstock
     parameters:
       service-key:
-        name: capbigbagstock-auth-key
+        name: uaa_capbigbagstock-key
   parameters:
     content:
       instance:
@@ -47,8 +51,9 @@ modules:
           ServiceKeyName: capbigbagstock_html_repo_host-key
           sap.cloud.service: bigbagstock
         - Authentication: OAuth2UserTokenExchange
-          Name: bigbagstock_capbigbagstock_auth
-          ServiceKeyName: capbigbagstock-auth-key
+          Name: bigbagstock_uaa_capbigbagstock
+          ServiceInstanceName: capbigbagstock-xsuaa-service
+          ServiceKeyName: uaa_capbigbagstock-key
           sap.cloud.service: bigbagstock
         existing_destinations_policy: ignore
   build-parameters:
@@ -142,7 +147,7 @@ resources:
     services: hana
   properties:
     hdi-service-name: ${service-name}
-- name: capbigbagstock-auth
+- name: uaa_capbigbagstock
   type: org.cloudfoundry.managed-service
   parameters:
     config:
@@ -163,6 +168,7 @@ resources:
       xsappname: capbigbagstock-${space}
     path: ./xs-security.json
     service: xsuaa
+    service-name: capbigbagstock-xsuaa-service
     service-plan: application
 - name: capbigbagstock-destination-service
   type: org.cloudfoundry.managed-service
