@@ -1,0 +1,59 @@
+---
+_schema-version: '3.1'
+ID: capbigbagstock
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  # --------------------- SERVER MODULE -------------------------
+  - name: capbigbagstock-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: capbigbagstock-db # This is name of resource service 
+      - name: capbigbagstock-auth
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+  # --------------------- SEDICAR MODULE -------------------------          
+  - name: capbigbagstock-db-deployer
+    #--------------------------------------------------------------   
+    type: hdb
+    path: db #gen/db This path can generate error.
+    requires:
+      - name: capbigbagstock-db
+    parameters:
+      buildpack: nodejs_buildpack
+
+resources:
+  # ------------------------- RESOURCES -------------------------
+  - name: capbigbagstock-db
+    #--------------------------------------------------------------
+    type: com.sap.xs.hdi-container
+    parameters:
+      service-plan: hdi-shared
+      services: hana
+      service: hana
+    properties:
+      hdi-service-name: '${service-name}'
+  - name: capbigbagstock-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: capbigbagstock-${space}
+        tenant-mode: dedicated
