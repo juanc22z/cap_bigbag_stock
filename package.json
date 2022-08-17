@@ -7,16 +7,22 @@
   "private": true,
   "dependencies": {
     "@sap/cds": ">=5",
+    "@sap/xssec": "^3",
     "express": "^4",
     "hdb": "^0.19.0",
-    "passport": "^0.6.0",
-    "@sap/xssec": "^3"
+    "passport": "^0.6.0"
   },
   "devDependencies": {
+    "@sap/ux-specification": "^1.102.3",
     "sqlite3": "^5.0.4"
   },
   "scripts": {
-    "start": "cds run"
+    "start": "cds run",
+    "watch-uibigbagstock": "cds watch --open uibigbagstock/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-shift_sk_search_help": "cds watch --open shift_sk_search_help/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-reference_sk_search_help": "cds watch --open reference_sk_search_help/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-observation_sk_search_help": "cds watch --open observation_sk_search_help/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-bigbagtype_sk_search_help": "cds watch --open bigbagtype_sk_search_help/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -71,5 +77,12 @@
         "kind": "sql"
       }
     }
-  }
+  },
+  "sapux": [
+    "app/uibigbagstock",
+    "app/shift_sk_search_help",
+    "app/reference_sk_search_help",
+    "app/observation_sk_search_help",
+    "app/bigbagtype_sk_search_help"
+  ]
 }

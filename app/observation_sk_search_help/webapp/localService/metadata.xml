@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="BigBagStock" EntityType="CatalogService.BigBagStock">
+                    <NavigationPropertyBinding Path="bigbagtype" Target="Bigbagtype"/>
+                    <NavigationPropertyBinding Path="shiftsk" Target="Shiftsk"/>
+                    <NavigationPropertyBinding Path="referencesk" Target="Referencesk"/>
+                    <NavigationPropertyBinding Path="observationsk" Target="Observationsk"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="BigBagStock"/>
+                </EntitySet>
+                <EntitySet Name="Bigbagtype" EntityType="CatalogService.Bigbagtype">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Bigbagtype"/>
+                </EntitySet>
+                <EntitySet Name="Shiftsk" EntityType="CatalogService.Shiftsk">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Shiftsk"/>
+                </EntitySet>
+                <EntitySet Name="Referencesk" EntityType="CatalogService.Referencesk">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Referencesk"/>
+                </EntitySet>
+                <EntitySet Name="Observationsk" EntityType="CatalogService.Observationsk">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Observationsk"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="BigBagStock">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="quantity" Type="Edm.Int32"/>
+                <NavigationProperty Name="bigbagtype" Type="CatalogService.Bigbagtype">
+                    <ReferentialConstraint Property="bigbagtype_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="bigbagtype_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="shiftsk" Type="CatalogService.Shiftsk">
+                    <ReferentialConstraint Property="shiftsk_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="shiftsk_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="referencesk" Type="CatalogService.Referencesk">
+                    <ReferentialConstraint Property="referencesk_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="referencesk_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="observationsk" Type="CatalogService.Observationsk">
+                    <ReferentialConstraint Property="observationsk_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="observationsk_ID" Type="Edm.Guid"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogService.BigBagStock"/>
+            </EntityType>
+            <EntityType Name="Bigbagtype">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogService.Bigbagtype"/>
+            </EntityType>
+            <EntityType Name="Shiftsk">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogService.Shiftsk"/>
+            </EntityType>
+            <EntityType Name="Referencesk">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogService.Referencesk"/>
+            </EntityType>
+            <EntityType Name="Observationsk">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="CatalogService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="CatalogService.Observationsk"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.BigBagStock"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogService.BigBagStock"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Bigbagtype"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogService.Bigbagtype"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Shiftsk"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogService.Shiftsk"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Referencesk"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogService.Referencesk"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Observationsk"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="CatalogService.Observationsk"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.BigBagStock"/>
+                <ReturnType Type="CatalogService.BigBagStock"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Bigbagtype"/>
+                <ReturnType Type="CatalogService.Bigbagtype"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Shiftsk"/>
+                <ReturnType Type="CatalogService.Shiftsk"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Referencesk"/>
+                <ReturnType Type="CatalogService.Referencesk"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Observationsk"/>
+                <ReturnType Type="CatalogService.Observationsk"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.BigBagStock"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogService.BigBagStock"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Bigbagtype"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogService.Bigbagtype"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Shiftsk"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogService.Shiftsk"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Referencesk"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogService.Referencesk"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="CatalogService.Observationsk"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="CatalogService.Observationsk"/>
+            </Action>
+            <Annotations Target="CatalogService.BigBagStock">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{i18n>Bigbag}"/>
+                            <PropertyValue Property="TypeNamePlural" String="{i18n>Bigbags}"/>
+                                <PropertyValue Property="Title">
+                                    <Record Type="UI.DataField">
+                                        <PropertyValue Property="Value" Path="shiftsk_ID"/>
+                                    </Record>
+                                </PropertyValue>
+                                <PropertyValue Property="Description">
+                                    <Record Type="UI.DataField">
+                                        <PropertyValue Property="Value" Path="bigbagtype_ID"/>
+                                    </Record>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.SelectionFields">
+                            <Collection>
+                                <PropertyPath>createdAt</PropertyPath>
+                                <PropertyPath>referencesk_ID</PropertyPath>
+                            </Collection>
+                        </Annotation>
+                        <Annotation Term="UI.LineItem">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="referencesk_ID"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="observationsk_ID"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="quantity"/>
+                                </Record>
+                            </Collection>
+                        </Annotation>
+                        <Annotation Term="UI.Facets">
+                            <Collection>
+                                <Record Type="UI.ReferenceFacet">
+                                    <PropertyValue Property="Label" String="{i18n>Detail}"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                    </Record>
+                                </Collection>
+                            </Annotation>
+                            <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                                <Record Type="UI.FieldGroupType">
+                                    <PropertyValue Property="Data">
+                                        <Collection>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="referencesk_ID"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="observationsk_ID"/>
+                                            </Record>
+                                            <Record Type="UI.DataField">
+                                                <PropertyValue Property="Value" Path="quantity"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Annotation>
+                        </Annotations>
+                        <Annotations Target="CatalogService.EntityContainer/BigBagStock">
+                            <Annotation Term="Common.DraftRoot">
+                                <Record Type="Common.DraftRootType">
+                                    <PropertyValue Property="ActivationAction" String="CatalogService.draftActivate"/>
+                                    <PropertyValue Property="EditAction" String="CatalogService.draftEdit"/>
+                                    <PropertyValue Property="PreparationAction" String="CatalogService.draftPrepare"/>
+                                </Record>
+                            </Annotation>
+                        </Annotations>
+                        <Annotations Target="CatalogService.BigBagStock/createdAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Immutable" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                            </Annotations>
+                            <Annotations Target="CatalogService.BigBagStock/createdBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="CatalogService.BigBagStock/modifiedAt">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                        </Annotations>
+                                        <Annotations Target="CatalogService.BigBagStock/modifiedBy">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                </Annotations>
+                                                <Annotations Target="CatalogService.BigBagStock/ID">
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                </Annotations>
+                                                <Annotations Target="CatalogService.BigBagStock/quantity">
+                                                    <Annotation Term="Common.Label" String="{i18n>quantity}"/>
+                                                        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                    </Annotations>
+                                                    <Annotations Target="CatalogService.BigBagStock/bigbagtype">
+                                                        <Annotation Term="Common.Label" String="{i18n>bigbagtype}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="CatalogService.BigBagStock/bigbagtype_ID">
+                                                            <Annotation Term="Common.Text" Path="bigbagtype/description">
+                                                                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                            </Annotation>
+                                                            <Annotation Term="Common.ValueList">
+                                                                <Record Type="Common.ValueListType">
+                                                                    <PropertyValue Property="Label" String="{i18n>bigbagtype}"/>
+                                                                        <PropertyValue Property="CollectionPath" String="Bigbagtype"/>
+                                                                        <PropertyValue Property="Parameters">
+                                                                            <Collection>
+                                                                                <Record Type="Common.ValueListParameterInOut">
+                                                                                    <PropertyValue Property="LocalDataProperty" PropertyPath="bigbagtype_ID"/>
+                                                                                    <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                                </Record>
+                                                                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                    <PropertyValue Property="ValueListProperty" String="description"/>
+                                                                                </Record>
+                                                                            </Collection>
+                                                                        </PropertyValue>
+                                                                    </Record>
+                                                                </Annotation>
+                                                                <Annotation Term="Common.Label" String="{i18n>bigbagtype}"/>
+                                                                    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                </Annotations>
+                                                                <Annotations Target="CatalogService.BigBagStock/shiftsk">
+                                                                    <Annotation Term="Common.Label" String="{i18n>shift}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="CatalogService.BigBagStock/shiftsk_ID">
+                                                                        <Annotation Term="Common.Text" Path="shiftsk/description">
+                                                                            <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                        </Annotation>
+                                                                        <Annotation Term="Common.ValueList">
+                                                                            <Record Type="Common.ValueListType">
+                                                                                <PropertyValue Property="Label" String="{i18n>shift}"/>
+                                                                                    <PropertyValue Property="CollectionPath" String="Shiftsk"/>
+                                                                                    <PropertyValue Property="Parameters">
+                                                                                        <Collection>
+                                                                                            <Record Type="Common.ValueListParameterInOut">
+                                                                                                <PropertyValue Property="LocalDataProperty" PropertyPath="shiftsk_ID"/>
+                                                                                                <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                                            </Record>
+                                                                                            <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                <PropertyValue Property="ValueListProperty" String="description"/>
+                                                                                            </Record>
+                                                                                        </Collection>
+                                                                                    </PropertyValue>
+                                                                                </Record>
+                                                                            </Annotation>
+                                                                            <Annotation Term="Common.Label" String="{i18n>shift}"/>
+                                                                                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="CatalogService.BigBagStock/referencesk">
+                                                                                <Annotation Term="Common.Label" String="{i18n>reference}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="CatalogService.BigBagStock/referencesk_ID">
+                                                                                    <Annotation Term="Common.Text" Path="referencesk/description">
+                                                                                        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                                    </Annotation>
+                                                                                    <Annotation Term="Common.ValueList">
+                                                                                        <Record Type="Common.ValueListType">
+                                                                                            <PropertyValue Property="Label" String="{i18n>reference}"/>
+                                                                                                <PropertyValue Property="CollectionPath" String="Referencesk"/>
+                                                                                                <PropertyValue Property="Parameters">
+                                                                                                    <Collection>
+                                                                                                        <Record Type="Common.ValueListParameterInOut">
+                                                                                                            <PropertyValue Property="LocalDataProperty" PropertyPath="referencesk_ID"/>
+                                                                                                            <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                                                        </Record>
+                                                                                                        <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                            <PropertyValue Property="ValueListProperty" String="description"/>
+                                                                                                        </Record>
+                                                                                                    </Collection>
+                                                                                                </PropertyValue>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="Common.Label" String="{i18n>reference}"/>
+                                                                                            <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="CatalogService.BigBagStock/observationsk">
+                                                                                            <Annotation Term="Common.Label" String="{i18n>observation}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="CatalogService.BigBagStock/observationsk_ID">
+                                                                                                <Annotation Term="Common.Text" Path="observationsk/description">
+                                                                                                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                                                                                                </Annotation>
+                                                                                                <Annotation Term="Common.ValueList">
+                                                                                                    <Record Type="Common.ValueListType">
+                                                                                                        <PropertyValue Property="Label" String="{i18n>observation}"/>
+                                                                                                            <PropertyValue Property="CollectionPath" String="Observationsk"/>
+                                                                                                            <PropertyValue Property="Parameters">
+                                                                                                                <Collection>
+                                                                                                                    <Record Type="Common.ValueListParameterInOut">
+                                                                                                                        <PropertyValue Property="LocalDataProperty" PropertyPath="observationsk_ID"/>
+                                                                                                                        <PropertyValue Property="ValueListProperty" String="ID"/>
+                                                                                                                    </Record>
+                                                                                                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                        <PropertyValue Property="ValueListProperty" String="description"/>
+                                                                                                                    </Record>
+                                                                                                                </Collection>
+                                                                                                            </PropertyValue>
+                                                                                                        </Record>
+                                                                                                    </Annotation>
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>observation}"/>
+                                                                                                        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="CatalogService.BigBagStock/IsActiveEntity">
+                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="CatalogService.BigBagStock/HasActiveEntity">
+                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="CatalogService.BigBagStock/HasDraftEntity">
+                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="CatalogService.BigBagStock/DraftAdministrativeData">
+                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="CatalogService.Bigbagtype">
+                                                                                                        <Annotation Term="UI.HeaderInfo">
+                                                                                                            <Record Type="UI.HeaderInfoType">
+                                                                                                                <PropertyValue Property="TypeName" String="{i18n>bigbagtype}"/>
+                                                                                                                    <PropertyValue Property="TypeNamePlural" String="{i18n>bigbagtypes}"/>
+                                                                                                                    </Record>
+                                                                                                                </Annotation>
+                                                                                                                <Annotation Term="UI.SelectionFields">
+                                                                                                                    <Collection>
+                                                                                                                        <PropertyPath>ID</PropertyPath>
+                                                                                                                    </Collection>
+                                                                                                                </Annotation>
+                                                                                                                <Annotation Term="UI.LineItem">
+                                                                                                                    <Collection>
+                                                                                                                        <Record Type="UI.DataField">
+                                                                                                                            <PropertyValue Property="Value" Path="description"/>
+                                                                                                                        </Record>
+                                                                                                                    </Collection>
+                                                                                                                </Annotation>
+                                                                                                                <Annotation Term="UI.Facets">
+                                                                                                                    <Collection>
+                                                                                                                        <Record Type="UI.ReferenceFacet">
+                                                                                                                            <PropertyValue Property="Label" String="{i18n>Detail}"/>
+                                                                                                                                <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                                                                                                            </Record>
+                                                                                                                        </Collection>
+                                                                                                                    </Annotation>
+                                                                                                                    <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                                                                                                                        <Record Type="UI.FieldGroupType">
+                                                                                                                            <PropertyValue Property="Data">
+                                                                                                                                <Collection>
+                                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                                        <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                    </Record>
+                                                                                                                                </Collection>
+                                                                                                                            </PropertyValue>
+                                                                                                                        </Record>
+                                                                                                                    </Annotation>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="CatalogService.EntityContainer/Bigbagtype">
+                                                                                                                    <Annotation Term="Common.DraftRoot">
+                                                                                                                        <Record Type="Common.DraftRootType">
+                                                                                                                            <PropertyValue Property="ActivationAction" String="CatalogService.draftActivate"/>
+                                                                                                                            <PropertyValue Property="EditAction" String="CatalogService.draftEdit"/>
+                                                                                                                            <PropertyValue Property="PreparationAction" String="CatalogService.draftPrepare"/>
+                                                                                                                        </Record>
+                                                                                                                    </Annotation>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="CatalogService.Bigbagtype/createdAt">
+                                                                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                                                                    </Annotations>
+                                                                                                                    <Annotations Target="CatalogService.Bigbagtype/createdBy">
+                                                                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                            </Annotations>
+                                                                                                                            <Annotations Target="CatalogService.Bigbagtype/modifiedAt">
+                                                                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                                                                                </Annotations>
+                                                                                                                                <Annotations Target="CatalogService.Bigbagtype/modifiedBy">
+                                                                                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogService.Bigbagtype/ID">
+                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogService.Bigbagtype/description">
+                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>bigbagtype}"/>
+                                                                                                                                                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Bigbagtype/IsActiveEntity">
+                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Bigbagtype/HasActiveEntity">
+                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Bigbagtype/HasDraftEntity">
+                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Bigbagtype/DraftAdministrativeData">
+                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Shiftsk">
+                                                                                                                                                <Annotation Term="UI.HeaderInfo">
+                                                                                                                                                    <Record Type="UI.HeaderInfoType">
+                                                                                                                                                        <PropertyValue Property="TypeName" String="{i18n>shift}"/>
+                                                                                                                                                            <PropertyValue Property="TypeNamePlural" String="{i18n>shifts}"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                        </Annotation>
+                                                                                                                                                        <Annotation Term="UI.SelectionFields">
+                                                                                                                                                            <Collection>
+                                                                                                                                                                <PropertyPath>ID</PropertyPath>
+                                                                                                                                                            </Collection>
+                                                                                                                                                        </Annotation>
+                                                                                                                                                        <Annotation Term="UI.LineItem">
+                                                                                                                                                            <Collection>
+                                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                                    <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                </Record>
+                                                                                                                                                            </Collection>
+                                                                                                                                                        </Annotation>
+                                                                                                                                                        <Annotation Term="UI.Facets">
+                                                                                                                                                            <Collection>
+                                                                                                                                                                <Record Type="UI.ReferenceFacet">
+                                                                                                                                                                    <PropertyValue Property="Label" String="{i18n>Detail}"/>
+                                                                                                                                                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </Annotation>
+                                                                                                                                                            <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                                                                                                                                                                <Record Type="UI.FieldGroupType">
+                                                                                                                                                                    <PropertyValue Property="Data">
+                                                                                                                                                                        <Collection>
+                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                            </Record>
+                                                                                                                                                                        </Collection>
+                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                </Record>
+                                                                                                                                                            </Annotation>
+                                                                                                                                                        </Annotations>
+                                                                                                                                                        <Annotations Target="CatalogService.EntityContainer/Shiftsk">
+                                                                                                                                                            <Annotation Term="Common.DraftRoot">
+                                                                                                                                                                <Record Type="Common.DraftRootType">
+                                                                                                                                                                    <PropertyValue Property="ActivationAction" String="CatalogService.draftActivate"/>
+                                                                                                                                                                    <PropertyValue Property="EditAction" String="CatalogService.draftEdit"/>
+                                                                                                                                                                    <PropertyValue Property="PreparationAction" String="CatalogService.draftPrepare"/>
+                                                                                                                                                                </Record>
+                                                                                                                                                            </Annotation>
+                                                                                                                                                        </Annotations>
+                                                                                                                                                        <Annotations Target="CatalogService.Shiftsk/createdAt">
+                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                                                                                                            </Annotations>
+                                                                                                                                                            <Annotations Target="CatalogService.Shiftsk/createdBy">
+                                                                                                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                                                                    </Annotations>
+                                                                                                                                                                    <Annotations Target="CatalogService.Shiftsk/modifiedAt">
+                                                                                                                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                                                                                                                        </Annotations>
+                                                                                                                                                                        <Annotations Target="CatalogService.Shiftsk/modifiedBy">
+                                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                <Annotations Target="CatalogService.Shiftsk/ID">
+                                                                                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                <Annotations Target="CatalogService.Shiftsk/description">
+                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>shift}"/>
+                                                                                                                                                                                        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogService.Shiftsk/IsActiveEntity">
+                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogService.Shiftsk/HasActiveEntity">
+                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogService.Shiftsk/HasDraftEntity">
+                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogService.Shiftsk/DraftAdministrativeData">
+                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="CatalogService.Referencesk">
+                                                                                                                                                                                        <Annotation Term="UI.HeaderInfo">
+                                                                                                                                                                                            <Record Type="UI.HeaderInfoType">
+                                                                                                                                                                                                <PropertyValue Property="TypeName" String="{i18n>reference}"/>
+                                                                                                                                                                                                    <PropertyValue Property="TypeNamePlural" String="{i18n>references}"/>
+                                                                                                                                                                                                    </Record>
+                                                                                                                                                                                                </Annotation>
+                                                                                                                                                                                                <Annotation Term="UI.SelectionFields">
+                                                                                                                                                                                                    <Collection>
+                                                                                                                                                                                                        <PropertyPath>ID</PropertyPath>
+                                                                                                                                                                                                    </Collection>
+                                                                                                                                                                                                </Annotation>
+                                                                                                                                                                                                <Annotation Term="UI.LineItem">
+                                                                                                                                                                                                    <Collection>
+                                                                                                                                                                                                        <Record Type="UI.DataField">
+                                                                                                                                                                                                            <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                                                        </Record>
+                                                                                                                                                                                                    </Collection>
+                                                                                                                                                                                                </Annotation>
+                                                                                                                                                                                                <Annotation Term="UI.Facets">
+                                                                                                                                                                                                    <Collection>
+                                                                                                                                                                                                        <Record Type="UI.ReferenceFacet">
+                                                                                                                                                                                                            <PropertyValue Property="Label" String="{i18n>Detail}"/>
+                                                                                                                                                                                                                <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                                    </Annotation>
+                                                                                                                                                                                                    <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                                                                                                                                                                                                        <Record Type="UI.FieldGroupType">
+                                                                                                                                                                                                            <PropertyValue Property="Data">
+                                                                                                                                                                                                                <Collection>
+                                                                                                                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                                                                                                                        <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                                                                    </Record>
+                                                                                                                                                                                                                </Collection>
+                                                                                                                                                                                                            </PropertyValue>
+                                                                                                                                                                                                        </Record>
+                                                                                                                                                                                                    </Annotation>
+                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                <Annotations Target="CatalogService.EntityContainer/Referencesk">
+                                                                                                                                                                                                    <Annotation Term="Common.DraftRoot">
+                                                                                                                                                                                                        <Record Type="Common.DraftRootType">
+                                                                                                                                                                                                            <PropertyValue Property="ActivationAction" String="CatalogService.draftActivate"/>
+                                                                                                                                                                                                            <PropertyValue Property="EditAction" String="CatalogService.draftEdit"/>
+                                                                                                                                                                                                            <PropertyValue Property="PreparationAction" String="CatalogService.draftPrepare"/>
+                                                                                                                                                                                                        </Record>
+                                                                                                                                                                                                    </Annotation>
+                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                <Annotations Target="CatalogService.Referencesk/createdAt">
+                                                                                                                                                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                    <Annotations Target="CatalogService.Referencesk/createdBy">
+                                                                                                                                                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                            <Annotations Target="CatalogService.Referencesk/modifiedAt">
+                                                                                                                                                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                <Annotations Target="CatalogService.Referencesk/modifiedBy">
+                                                                                                                                                                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                        <Annotations Target="CatalogService.Referencesk/ID">
+                                                                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                        <Annotations Target="CatalogService.Referencesk/description">
+                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>reference}"/>
+                                                                                                                                                                                                                                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="CatalogService.Referencesk/IsActiveEntity">
+                                                                                                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="CatalogService.Referencesk/HasActiveEntity">
+                                                                                                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="CatalogService.Referencesk/HasDraftEntity">
+                                                                                                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="CatalogService.Referencesk/DraftAdministrativeData">
+                                                                                                                                                                                                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="CatalogService.Observationsk">
+                                                                                                                                                                                                                                <Annotation Term="UI.HeaderInfo">
+                                                                                                                                                                                                                                    <Record Type="UI.HeaderInfoType">
+                                                                                                                                                                                                                                        <PropertyValue Property="TypeName" String="{i18n>observation}"/>
+                                                                                                                                                                                                                                            <PropertyValue Property="TypeNamePlural" String="{i18n>observations}"/>
+                                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                                        </Annotation>
+                                                                                                                                                                                                                                        <Annotation Term="UI.SelectionFields">
+                                                                                                                                                                                                                                            <Collection>
+                                                                                                                                                                                                                                                <PropertyPath>ID</PropertyPath>
+                                                                                                                                                                                                                                            </Collection>
+                                                                                                                                                                                                                                        </Annotation>
+                                                                                                                                                                                                                                        <Annotation Term="UI.LineItem">
+                                                                                                                                                                                                                                            <Collection>
+                                                                                                                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                                                                                                                    <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                                                                                                </Record>
+                                                                                                                                                                                                                                            </Collection>
+                                                                                                                                                                                                                                        </Annotation>
+                                                                                                                                                                                                                                        <Annotation Term="UI.Facets">
+                                                                                                                                                                                                                                            <Collection>
+                                                                                                                                                                                                                                                <Record Type="UI.ReferenceFacet">
+                                                                                                                                                                                                                                                    <PropertyValue Property="Label" String="{i18n>Detail}"/>
+                                                                                                                                                                                                                                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main"/>
+                                                                                                                                                                                                                                                    </Record>
+                                                                                                                                                                                                                                                </Collection>
+                                                                                                                                                                                                                                            </Annotation>
+                                                                                                                                                                                                                                            <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                                                                                                                                                                                                                                                <Record Type="UI.FieldGroupType">
+                                                                                                                                                                                                                                                    <PropertyValue Property="Data">
+                                                                                                                                                                                                                                                        <Collection>
+                                                                                                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                                                                                                <PropertyValue Property="Value" Path="description"/>
+                                                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                                                                                                </Record>
+                                                                                                                                                                                                                                            </Annotation>
+                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                        <Annotations Target="CatalogService.EntityContainer/Observationsk">
+                                                                                                                                                                                                                                            <Annotation Term="Common.DraftRoot">
+                                                                                                                                                                                                                                                <Record Type="Common.DraftRootType">
+                                                                                                                                                                                                                                                    <PropertyValue Property="ActivationAction" String="CatalogService.draftActivate"/>
+                                                                                                                                                                                                                                                    <PropertyValue Property="EditAction" String="CatalogService.draftEdit"/>
+                                                                                                                                                                                                                                                    <PropertyValue Property="PreparationAction" String="CatalogService.draftPrepare"/>
+                                                                                                                                                                                                                                                </Record>
+                                                                                                                                                                                                                                            </Annotation>
+                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                        <Annotations Target="CatalogService.Observationsk/createdAt">
+                                                                                                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                            <Annotations Target="CatalogService.Observationsk/createdBy">
+                                                                                                                                                                                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                                                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.Observationsk/modifiedAt">
+                                                                                                                                                                                                                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                        <Annotations Target="CatalogService.Observationsk/modifiedBy">
+                                                                                                                                                                                                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                                                                                                                                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                <Annotations Target="CatalogService.Observationsk/ID">
+                                                                                                                                                                                                                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                <Annotations Target="CatalogService.Observationsk/description">
+                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>observation}"/>
+                                                                                                                                                                                                                                                                        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.Observationsk/IsActiveEntity">
+                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.Observationsk/HasActiveEntity">
+                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.Observationsk/HasDraftEntity">
+                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.Observationsk/DraftAdministrativeData">
+                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.DraftAdministrativeData">
+                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                        <Annotations Target="CatalogService.DraftAdministrativeData/DraftUUID">
+                                                                                                                                                                                                                                                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                            <Annotations Target="CatalogService.DraftAdministrativeData/CreationDateTime">
+                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                <Annotations Target="CatalogService.DraftAdministrativeData/CreatedByUser">
+                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                        <Annotations Target="CatalogService.DraftAdministrativeData/LastChangeDateTime">
+                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                            <Annotations Target="CatalogService.DraftAdministrativeData/LastChangedByUser">
+                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                <Annotations Target="CatalogService.DraftAdministrativeData/InProcessByUser">
+                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                    <Annotations Target="CatalogService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                                                                                                                                                                                                                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                    </Schema>
+                                                                                                                                                                                                                                                                                                </edmx:DataServices>
+                                                                                                                                                                                                                                                                                            </edmx:Edmx>
