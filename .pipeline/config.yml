@@ -67,7 +67,7 @@ stages:
     cfSpace: "dev"
     cfAppName: "capbigbagstock"
     cfCredentialsId: "deploy-to-cf"
-    tmsUpload: false
+    tmsUpload: true
 
   steps:
     artifactPrepareVersion:
@@ -81,3 +81,4 @@ stages:
 
   tmsUpload:
     nodeName: "qas"
+    CredentialsId: "tms-sk"
