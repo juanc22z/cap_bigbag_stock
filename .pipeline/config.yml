@@ -8,24 +8,22 @@
 # This is a YAML-file. YAML is an indentation-sensitive file format. Please make sure to properly indent changes to it.
 ###
 
+# ### General project setup
+# general:
+#   inferBuildTool: true
 
+# ### Step-specific configuration
+# steps:
+#   mavenExecute:
+#     dockerImage: devxci/mbtci:1.0.14
 
-### General project setup
-general:
-  inferBuildTool: true
+#   artifactPrepareVersion:
+#     versioningType: cloud_noTag
 
-### Step-specific configuration
-steps:
-  mavenExecute:
-    dockerImage: devxci/mbtci:1.0.14
-
-  artifactPrepareVersion:
-    versioningType: cloud_noTag
-
-### Stage-specific configuration
-stages:
-  'Confirm':
-    manualConfirmation: false
+# ### Stage-specific configuration
+# stages:
+#   'Confirm':
+#     manualConfirmation: false
 
 #  Integration:
 #    credentials:
@@ -41,6 +39,18 @@ stages:
 #        manifest: 'manifest.yml'
 #        credentialsId: 'myDeploymentCredentialsId'
 
+general:
+  buildTool: "mta"
+
+stages:
+  Build:
+    mavenExcuteStaticCodeChecks: true
+    npmExecuteLint: true
+
+  Additional Unit Tests:
+    npmExecuteScripts: false
+    karmaExecuteTests: false
+
   Acceptance:
     cloudFoundryDeploy: false
     cfApiEndpoint: "https://api.cf.us10.hana.ondemand.com"
@@ -51,10 +61,23 @@ stages:
     uiVeri5ExecuteTests: false
 
   Release:
-    cloudFoundryDeploy: true 
+    cloudFoundryDeploy: true
     cfApiEndpoint: "https://api.cf.us10.hana.ondemand.com"
     cfOrg: "dev-paperless"
     cfSpace: "dev"
     cfAppName: "capbigbagstock"
     cfCredentialsId: "deploy-to-cf"
     tmsUpload: false
+
+  steps:
+    artifactPrepareVersion:
+      versioningType: "cloud_noTag"
+
+  npmExecutelint:
+    failOnError: true
+
+  cloudFoundryDeploy:
+    mtaDeployParameters: "-f --version-rule ALL"
+
+  tmsUpload:
+    nodeName: "qas"
