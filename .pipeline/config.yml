@@ -111,7 +111,7 @@ stages:
     cfSpace: "dev"
     cfAppName: "capbigbagstock"
     cfCredentialsId: "deploy-to-cf"
-    tmsUpload: false
+    tmsUpload: true
 
 steps:
   artifactPrepareVersion:
