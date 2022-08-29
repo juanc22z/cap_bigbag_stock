@@ -8,8 +8,15 @@ service CatalogService {
             to    : ['BigbagStockViewer']
         },
         {
-            grant : ['READ', 'CREATE'],
+            grant : [
+                'READ',
+                'CREATE'
+            ],
             to    : ['BigbagStockOperator']
+        },
+        {
+            grant : ['*'],
+            to    : ['BigbagStockManager']
         }
     ]) as projection on bigbag.BigBagStock;
 
