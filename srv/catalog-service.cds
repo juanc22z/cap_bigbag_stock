@@ -13,10 +13,6 @@ service CatalogService {
                 'CREATE'
             ],
             to    : ['BigbagStockOperator']
-        },
-        {
-            grant : ['*'],
-            to    : ['BigbagStockManager']
         }
     ]) as projection on bigbag.BigBagStock;
 

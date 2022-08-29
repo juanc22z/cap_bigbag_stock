@@ -8,14 +8,14 @@
                         "password": "initial",
                         "ID": "manager@tester.com",
                         "roles": [
-                            "BigbagStockdManager"
+                            "BigbagStockManager"
                         ]
                     },
                     "viewer@tester.com": {
                         "password": "initial",
                         "ID": "viewer@tester.com",
                         "roles": [
-                            "BigbagStockdViewer"
+                            "BigbagStockViewer"
                         ]
                     },
                     "operator@tester.com": {
