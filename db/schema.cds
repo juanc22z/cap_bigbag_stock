@@ -3,12 +3,13 @@ namespace com.ui.bigbagstock;
 using {managed} from '@sap/cds/common';
 
 entity BigBagStock : managed {
-    key ID            : UUID @(Core.Computed : true);
-        quantity      : Integer;
-        bigbagtype    : Association to Bigbagtype;
-        shiftsk       : Association to Shiftsk;
-        referencesk   : Association to Referencesk;
-        observationsk : Association to Observationsk;
+    key ID                : UUID @(Core.Computed : true);
+        quantity          : Integer;
+        registration_date : Date;
+        bigbagtype        : Association to Bigbagtype;
+        shiftsk           : Association to Shiftsk;
+        referencesk       : Association to Referencesk;
+        observationsk     : Association to Observationsk;
 }
 
 entity Bigbagtype : managed {

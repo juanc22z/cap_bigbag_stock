@@ -21,7 +21,10 @@ modules:
     type: hdb
     path: db
     requires:
+      - name: uaa_capbigbagstock
       - name: capbigbagstock-db
+        properties:
+          TARGET_CONTAINER: caploadnovalog-hdi      
     parameters:
       build-parameters:
         ignore:

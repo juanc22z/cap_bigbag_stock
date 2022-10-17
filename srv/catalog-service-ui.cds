@@ -2,11 +2,12 @@ using CatalogService from './catalog-service';
 
 // uibigbagcond App Annotations
 annotate CatalogService.BigBagStock with {
-    bigbagtype    @title : '{i18n>bigbagtype}'  @mandatory;
-    shiftsk       @title : '{i18n>shift}'  @mandatory;
-    referencesk   @title : '{i18n>reference}'  @mandatory;
-    observationsk @title : '{i18n>observation}'  @mandatory;
-    quantity      @title : '{i18n>quantity}'  @mandatory;
+    bigbagtype        @title : '{i18n>bigbagtype}'  @mandatory;
+    shiftsk           @title : '{i18n>shift}'  @mandatory;
+    referencesk       @title : '{i18n>reference}'  @mandatory;
+    observationsk     @title : '{i18n>observation}'  @mandatory;
+    quantity          @title : '{i18n>quantity}'  @mandatory;
+    registration_date @title : '{i18n>registration_date}'  @mandatory;
 }
 
 annotate CatalogService.BigBagStock with @(UI : {
@@ -26,6 +27,16 @@ annotate CatalogService.BigBagStock with @(UI : {
         createdAt,
         referencesk_ID
     ],
+    // SelectOptions    : [{
+    //     $Type        : 'UI.SelectOptionType',
+    //     PropertyName : Customer,
+    //     Ranges       : [{
+    //         $Type  : 'UI.SelectionRangeType',
+    //         Sign   : #I,
+    //         Option : #EQ,
+    //         Low    : 'ABC'
+    //     }]
+    // }],
     LineItem         : [
         {Value : referencesk_ID},
         {Value : observationsk_ID},
@@ -39,10 +50,12 @@ annotate CatalogService.BigBagStock with @(UI : {
     FieldGroup #Main : {Data : [
         {Value : referencesk_ID},
         {Value : observationsk_ID},
+        {Value : registration_date},
         {Value : quantity}
     ]}
 }, ) {
-
+    createdAt @UI.HiddenFilter : false;
+    createdBy @UI.HiddenFilter : false;
 };
 
 annotate CatalogService.BigBagStock with {

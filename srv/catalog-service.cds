@@ -10,7 +10,15 @@ service CatalogService {
         {
             grant : [
                 'READ',
-                'CREATE'
+                'DELETE'
+            ],
+            to    : ['BigbagStockDelete']
+        },
+        {
+            grant : [
+                'READ',
+                'CREATE',
+                'UPDATE'
             ],
             to    : ['BigbagStockOperator']
         }
