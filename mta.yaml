@@ -24,7 +24,7 @@ modules:
       - name: uaa_capbigbagstock
       - name: capbigbagstock-db
         properties:
-          TARGET_CONTAINER: caploadnovalog-hdi      
+          TARGET_CONTAINER: capbigbagstock-db      
     parameters:
       build-parameters:
         ignore:
