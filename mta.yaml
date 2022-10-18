@@ -1,7 +1,7 @@
 _schema-version: "3.1"
 ID: capbigbagstock
 description: A simple CAP project.
-version: 1.0.4
+version: 1.0.0
 modules:
   - name: capbigbagstock-srv
     type: nodejs
